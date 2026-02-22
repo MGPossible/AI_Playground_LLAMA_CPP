@@ -1,7 +1,7 @@
- Einrichtung einer lokalen KI-Spielwiese
+#Einrichtung einer lokalen KI-Spielwiese
 ### Benötigte Software / Modelle: 
 - [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe)
-- [Aktuellstes LLama C++ - Release]([https://github.com/ggml-org/llama.cpp/releases])
+- [Aktuellstes LLama C++ - Release](https://github.com/ggml-org/llama.cpp/releases)
 - [Gewünschtes OpenSource KI-Modell im GGUF-Format](https://huggingface.co/models?search=gguf)
 - [ggf. Software zum Auslesen der Grafikkarte](https://www.techpowerup.com/gpuz/)
 
