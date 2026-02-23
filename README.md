@@ -34,7 +34,7 @@ Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktio
    - Unten findet man unter ``Computing`` die Checkbox für ``CUDA``.
    - Unter ``Memory Size`` findet man den ``VRAM`` in MB (Wert / 1000 = Wert in GB)
    - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
-   - ![Beispielhafte Darstellung](/docs/rtx4090.png = 400x567)
+   - ![Beispielhafte Darstellung](/docs/rtx4090.png=400x567)
 
 2. Danach muss ein passendes LLama C++ - Release heruntergeladen werden [Aktuellstes LLama C++ - Release]([https://github.com/ggml-org/llama.cpp/releases]):
     - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
