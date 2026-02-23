@@ -10,17 +10,17 @@ Der wahrscheinlich größte Knackpunkt bei der lokalen KI-Anwendung ist der eige
 Die Geschwindigkeit der CPU ist eher nebensächlich. Die CPU sollte nur nicht älter als 2015 sein, da zu diesem Zeitpunkt wichtige Hardware-Protokolle eingeführt wurden.
 Der Systemspeicher ``(RAM)`` sollte mindestens 16GB betragen, wenn man mehr als nur ein ``Proof-Of-Concept`` erstellen möchte.
 
-Die unterste Grenze für einen spassigen Einstieg liegt bei einem Laptop mit 16GB Systemspeicher ohne Grafikarte aus dem Jahr 2015.
+Die ``unterste Grenze`` für einen spassigen Einstieg liegt bei einem Laptop mit 16GB Systemspeicher ohne Grafikarte aus dem Jahr 2015.
 Dieser PC kann einfache Modelle ausführen und leichte Probleme mit KI lösen: z.B. Videoüberwachung (Personenerkennung) durchführen, einfache Chat-Bots zur Verfügung stellen (für z.B. Nachhilfeaufgaben, Vokabeltrainer, Texterschließungstools), aus einfacher Sprache Texte erstellen oder ein Recherche-Tool mit Internetanbindung zum Laufen bringen.
 
-Die gehobene Mittelklasse ist ein PC mit 16GB Systemspeicher und 12GB Grafikartenspeicher (idealerweise eine NVIDIA-Grafikkarte z.B. RTX5070 > RTX4070 > RTX 4060TI > RTX 3080 TI).
+Die ``gehobene Mittelklasse`` ist ein PC mit 16GB Systemspeicher und 12GB Grafikartenspeicher (idealerweise eine NVIDIA-Grafikkarte z.B. RTX5070 > RTX4070 > RTX 4060TI > RTX 3080 TI).
 Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander verarbeiten, komplexe Informationen aus Bilder entnehmen, Audiodateien erstellen oder längere Programme schreiben.
 
-Die Oberklasse bis High End ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
+Die ``Oberklasse bis High-End`` ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
 Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander gleichzeitig, komplexe Informationen aus vielen Bilder entnehmen, Audiodateien in wenigen Sekunden erstellen oder Programme mit höherer Komplexität schreiben. Dabei richtet sich diese Klasse eher an erfahrenere Nutzer, die diesen potenten PC auch durch andere Anwendungen ausreizen möchten.
 
 ### Betriebsystem
-Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktionieren jedoch äquivalent unter Linux bzw. WSL2.
+Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools funktionieren jedoch äquivalent unter Linux bzw. WSL2.
 
 ### Benötigte Software / Modelle (Schnellzugriff):
 - [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe)
@@ -28,32 +28,32 @@ Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktio
 - [Gewünschtes OpenSource KI-Modell im GGUF-Format](https://huggingface.co/models?search=gguf)
 - [ggf. Software zum Auslesen der Grafikkarte](https://www.techpowerup.com/gpuz/)
 
-1. Zuerst [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) herunterladen und installieren. Diese C++-Laufzeitbibliothek von Microsoft sind in der Regel bereits auf dem PC installiert. In diesem Fall spielt man dann nur ein Update mit dieser ``exe.``-Datei auf.
+1. Zuerst [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) herunterladen und installieren. Diese C++-Laufzeitbibliothek von Microsoft ist in der Regel bereits auf dem PC installiert. In diesem Fall spielt man dann nur ein Update mit dieser ``exe.``-Datei auf.
 
 2. Wenn die Spezifikationen des eignen PCs unbekannt sind, kann mit dem portablen und kostenfreiem Tool [GPU-Z](https://www.techpowerup.com/gpuz/) das System ausgelesen werden:
    - Unten findet man unter ``Computing`` die Checkbox für ``CUDA``.
    - Unter ``Memory Size`` findet man den ``VRAM`` in MB (Wert / 1000 = Wert in GB)
    - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
-     ![Beispielhafte Darstellung](/docs/rtx4090.png)
+   ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
-2. Danach muss ein passendes [LLama C++ - Release](https://github.com/ggml-org/llama.cpp/releases) heruntergeladen werden:
+2. Danach muss ein passendes LLama C++ - Release heruntergeladen werden [LLama-Release]([https://github.com/ggml-org/llama.cpp/releases):
     - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
     - ``Windows x64 (CUDA 12) - CUDA 12.4 DLLs``, wenn der PC über eine **NVIDIA** Grafikkarte verfügt (GPU-Z zeigt dann bei CUDA einen Haken)
     - ``Achtung``: Beide Pakete müssen heruntergeladen werden und dann im gleichen Ordner entpackt werden 
     - (Optional kann auch CUDA 13.1 bei den neusten Grafikkarten verwendet werden)
-    - ``Windows x64 (HIP)`` oder ``Windows x64 (Vulkan)``, wenn der PC über eine **AMD** Grafikkarte verfügt (GPU-Z zeigt dann das AMD-LOGO aber kein CUDA) 
-    - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre ``HIP``)
+    - ``Windows x64 (HIP)`` oder ``Windows x64 (Vulkan)``, wenn der PC über eine **AMD** Grafikkarte verfügt (GPU-Z zeigt dann das AMD-LOGO oben rechts) 
+    - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre die ``HIP``-Variante.
 
 3. Nun muss ein passendes Modell im ``.GUFF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
     - Bei der Auswahl des Modells müssen einige Dinge beachtet werden (mittelgroße Modell-Kunde):
     - **Trainingsparameter**:
         - Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
-        - 0.5B-6B-Modelle sind für ganz spezielle Einsatzwecke gedacht und sind dafür in anderen Bereichen eher nutzlos
-        - 7B-8B-Modelle sind etwas genereller im Einsatzzweck und haben eine sehr gute Performance. Sie sind bei komplexen Problemen eher überfordert.
-        - 14B-20B-Modelle sind im Jahr 2026 fast echte All-Rounder für lokale Anwendungen geworden. Sie benötigen allerdings potente Hardware.
-        - 120B< Modelle sind derzeit in Einzelbereichen State-Of-The-Art. Hier liegt der Bedarf an VRAM+RAM bei 240 GB.
-        - Wichtig: Je nach Architektur sind verschiedene Modellgruppen in Einzelbereichen unterschiedlich stark, daher lässt sich ein 8B-LAMA-Modell von Meta nicht direkt mit einem 8B-Qwen-Modell von Alibaba Cloud vergleichen. **Rule-Of-Thumb**: Liegt zwischen den Modellen eine Zeitspanne von 3-4 Monaten, dann ist das ältere Modell meist schlechter.
-        - Seit Q3 2025 wertden auch MoE-Modell trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei den Anfrage (z.B: Qwen3-Next-80B-A3B).
+        - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke gedacht und sind daher in anderen Bereichen eher nutzlos.
+        - ``7B-8B-Modelle`` sind etwas genereller im Einsatzzweck und haben eine sehr gute Performance. Sie sind bei komplexen Problemen eher überfordert.
+        - ``14B-20B-Modelle`` sind im Jahr 2026 fast echte All-Rounder für lokale Anwendungen geworden. Sie benötigen allerdings einen PC der ``gehobenen Mittelklasse`` bzw. ``Oberklasse``.
+        - ``120B< Modelle`` sind derzeit in Einzelbereichen **State-Of-The-Art**. Hier liegt der Bedarf an VRAM+RAM teilweise bei bis zu 240 GB.
+        - Wichtig: Je nach Architektur sind verschiedene Modellgruppen in Einzelbereichen unterschiedlich stark, daher lässt sich ein ``8B-LAMA-Modell`` von Meta nicht direkt mit einem ``8B-Qwen-Modell`` von Alibaba Cloud vergleichen. **Rule-Of-Thumb**: Liegt zwischen den Modellen eine Zeitspanne von 3-4 Monaten, dann ist das ältere Modell meist schlechter.
+        - Seit Q3 2025 werden auch ``MoE-Modelle`` trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei den Anfrage (z.B: Qwen3-Next-80B-A3B).
         - Die Bewertung dieser Modelle ist nicht immer ganz einfach. **Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 3 = 24B)
         
     - **Quantifizierung**
@@ -68,10 +68,11 @@ Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktio
         - ``INSTRUCT`` oder ``CHAT``- Modell: Klassisches Chat- Modell, welches trainiert wurde Dialoge mit den Nutzer zu führen
         - ``CODER`` oder ``CODER-INSTRUCT``-Modell: Traniert um längere Codes zu erstellen, ggf. mit Dialog-Option
         - ``THINKING``-Modell: Das Modell durchläuft einen bestimmten Ablauf, um die Ausgabe zu verbessern: ``Prompt des Nutzers``  -> ``Aufteilung in Teilprobleme`` -> ``Hierachisierung der Teilprobleme`` -> ``Bearbeitung der Teilprobleme`` -> ``Abgleich mit ursprünglichen Befehl`` -> ``Bewertung der eigenen Ausführung`` -> ``Ausgabe``.
-        - ``ASR``-Modelle: Wandeln Spracheingaben zu Text um.
-        - ``TTS``-Modelle: Wandeln Text zu Sprache um.
-        - ``OCR``-Modelle: Wandeln Bilder zu Text um (verarbeiten den Inhalt jedoch nicht).
-        - ``VL``-Modelle: Wandeln Bilder zu Text um und können diese in der Regel auch verarbeiten.
+        - ``ASR``-Modelle: Wandeln Spracheingaben zu Text um. Nicht alle ASR-Modelle sind mit LLAMA C++ lauffähig.
+        - ``TTS``-Modelle: Wandeln Text zu Sprache um. Nicht alle TTS-Modelle sind mit LLAMA C++ lauffähig.
+        - ``OCR``-Modelle: Wandeln Bilder zu Text um (verarbeiten den Inhalt jedoch nicht). Nicht alle OCR-Modelle sind mit LLAMA C++ lauffähig.
+        - ``VL``-Modelle: Wandeln Bilder zu Text um und können diese in der Regel auch verarbeiten. Nicht alle VL-Modelle sind mit LLAMA C++ lauffähig.
+        - ``DIFFUSION``-Modelle: Wandeln Texte oder Bilder in Bilder um. Diese können jedoch gar nicht mit LLAMA C++ angewandt werden.
         Das Modell ``Qwen3-VL-235B-A22B-Chat-Thinking`` ist also ein Modell, welches Informationen aus Bildern verarbeiten kann und dabei noch über die verschiedenen Teilprobleme der Anfrage "nachdenkt" bevor es antwortet.
 
     - **Kontextgröße**
@@ -104,3 +105,55 @@ Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktio
       - [Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf](https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF) - ``18.6 GB`` mind. 32GB RAM und mind. 16 GB VRAM (Sehr brauchbar bei komplexeren Problemen)
       - [Qwen3-Coder-30B-A3B-Instruct-Q8_0.gguf](https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF) - ``32.5 GB`` mind. 32GB RAM und mind. 24 GB VRAM (Sehr brauchbar bei komplexeren Problemen (besser als Q4))
       - [GPT-OSS-20b.gguf](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) - ``12.1 GB`` mind. 16GB RAM und 12 GB VRAM (**Vorschlag bei Verwendung von MCP-Servern**, Beachte Start-Parameter in dieser Anleitung: (https://github.com/ggml-org/llama.cpp/discussions/15396))
+      
+4. Zu Testzwecken sollte zunächst das kleine Modell [Qwen3-4B-Q4_K_M.gguf](https://huggingface.co/Qwen/Qwen3-4B-GGUF/tree/main) geladen werden.
+5. In einem beliebigen Stammverzeichnis (z.B.KI-Spielwiese) muss nun folgende Ordnerstruktur angelegt werden:
+    ```
+    - ROOT (KI-Spielwiese)
+        - models                        <-Hier werden alle Modelle im .GGUF-Format hinterlegt
+            - Qwen3-4B-Q4_K_M.gguf
+        - llamacpp                      <-Hier wird der gesamte Inhalt aus dem LLama C++ Release hinterlegt (ohne Unterordner!)
+            - llama-server.exe
+            - llama-cli.exe
+            - ggml.dll
+            - u.v.m.
+    ```
+
+6. Außerdem wird nun eine ``.BAT``-Datei zum Starten und eine ``config.ini``-Datei für optimalen Modell-Parameter benötigt.
+7. Diese müssen in des Stammverzeichnis abgelegt werden.
+8. Der Inhalt der Dateien sieht so aus:
+``Start.bat``
+    ```
+    @echo off
+    
+    start .\llamacpp\llama-server.exe --models-preset ./config.ini --host 127.0.0.1 --port 8033 -ngl 99
+
+    pause
+    ```
+``config.ini``
+
+    ```
+    [qwen2.5-3b-instruct-q4_k_m]
+    m = ./models/qwen2.5-3b-instruct-q4_k_m.gguf
+    temp = 0.7
+    top-p = 0.8
+    top-k = 20
+    ctx-size = 8192
+    
+    [Qwen3-Coder-30B-A3B-Instruct-Q6_K]
+    m = ./models/Qwen3-Coder-30B-A3B-Instruct-Q6_K.gguf
+    temp = 0.7
+    top-p = 0.8
+    top-k = 20
+    repeat-penalty=1.05
+    ctx-size = 32768
+    
+    
+    [gpt-oss-20b-mxfp4]
+    m = ./models/gpt-oss-20b-mxfp4.gguf
+    temp = 1.0
+    top-p = 1
+    top-k = 0
+    ctx-size = 0
+    ```
+
