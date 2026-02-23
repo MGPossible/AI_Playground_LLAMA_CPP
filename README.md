@@ -36,7 +36,7 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
    - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
    ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
-2. Danach muss ein passendes LLama C++ - Release heruntergeladen werden [LLama-Release]([https://github.com/ggml-org/llama.cpp/releases):
+2. Danach muss ein passendes [LLama C++ - Release]([https://github.com/ggml-org/llama.cpp/releases) heruntergeladen werden:
     - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
     - ``Windows x64 (CUDA 12) - CUDA 12.4 DLLs``, wenn der PC über eine **NVIDIA** Grafikkarte verfügt (GPU-Z zeigt dann bei CUDA einen Haken)
     - ``Achtung``: Beide Pakete müssen heruntergeladen werden und dann im gleichen Ordner entpackt werden 
@@ -45,7 +45,7 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
     - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre die ``HIP``-Variante.
 
 3. Nun muss ein passendes Modell im ``.GUFF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
-    - Bei der Auswahl des Modells müssen einige Dinge beachtet werden (mittelgroße Modell-Kunde):
+    - Bei der Auswahl des Modells müssen einige Dinge beachtet werden (**mittelgroße Modell-Kunde**):
     - **Trainingsparameter**:
         - Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
         - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke gedacht und sind daher in anderen Bereichen eher nutzlos.
@@ -122,7 +122,8 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
 6. Außerdem wird nun eine ``.BAT``-Datei zum Starten und eine ``config.ini``-Datei für optimalen Modell-Parameter benötigt.
 7. Diese müssen in des Stammverzeichnis abgelegt werden.
 8. Der Inhalt der Dateien sieht so aus:
-``Start.bat``
+
+    ``Start.bat``
     ```
     @echo off
     
@@ -130,7 +131,8 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
 
     pause
     ```
-``config.ini``
+
+    ``config.ini``
 
     ```
     [qwen2.5-3b-instruct-q4_k_m]
@@ -139,7 +141,7 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
     top-p = 0.8
     top-k = 20
     ctx-size = 8192
-    
+
     [Qwen3-Coder-30B-A3B-Instruct-Q6_K]
     m = ./models/Qwen3-Coder-30B-A3B-Instruct-Q6_K.gguf
     temp = 0.7
@@ -147,8 +149,8 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
     top-k = 20
     repeat-penalty=1.05
     ctx-size = 32768
-    
-    
+
+
     [gpt-oss-20b-mxfp4]
     m = ./models/gpt-oss-20b-mxfp4.gguf
     temp = 1.0
@@ -157,3 +159,4 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
     ctx-size = 0
     ```
 
+    WIP
