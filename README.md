@@ -36,7 +36,7 @@ Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktio
    - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
      ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
-2. Danach muss ein passendes LLama C++ - Release heruntergeladen werden [LLama-Release]([https://github.com/ggml-org/llama.cpp/releases]) :
+2. Danach muss ein passendes [LLama C++ - Release](https://github.com/ggml-org/llama.cpp/releases) heruntergeladen werden:
     - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
     - ``Windows x64 (CUDA 12) - CUDA 12.4 DLLs``, wenn der PC über eine **NVIDIA** Grafikkarte verfügt (GPU-Z zeigt dann bei CUDA einen Haken)
     - ``Achtung``: Beide Pakete müssen heruntergeladen werden und dann im gleichen Ordner entpackt werden 
