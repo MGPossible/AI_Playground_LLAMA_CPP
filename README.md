@@ -1,16 +1,40 @@
 # Einrichtung einer lokalen KI-Spielwiese
-### Benötigte Software / Modelle: 
+
+Diese Anleitung richtet sich an Alle, die in erster Linie verschiedene lokale KI-Modelle kennenlernen und ausprobieren möchten.
+Diese angeleitete Spielerei mit verschiedenen KI-Modellen kann auch einen Weg zur eigenen lokalen KI-Lösung ebenen, denn die Distanz von der Spielerei zur ersten Problemlösung ist manchmal gar nicht so weit.
+Zumdem ist es ein Irrglaube, dass nur riesige Cloud-Modelle ein fertiges Produkt liefern könnten - das mag zwar auf sehr komplexe Software-Projekte zutreffen - für viele kleine bis mittel-schwere Probleme können lokale Open-Source KI-Lösungen einen validen Lösungsansatz liefern.   
+Einen potenten PC vorrausgesetzt, kann später sogar mithilfe eines lokalen Coding-Agents das erste einfache bis mittel-schwere Projekt umgesetzt werden.
+
+### Benötigte Hardware:
+Der wahrscheinlich größte Knackpunkt bei der lokalen KI-Anwendung ist der eigene lokale PC. KI-Anwendung profitieren unheimlich von der Größe des Grafikkartenspeichers ``(VRAM)`` und speziell angepassten Berechnungschips den CUDA- bzw. MATRIX-TENSOR-Chips. Dabei setzt NVIDIA mit den CUDA-TENSOR-Chips faktisch den derzeitigen Standard, wobei AMD mit den MATRIX-TENSOR-Chips, technisch gesehen, bereits aufgeschlossen hat. Es fehlt jedoch das große Ökosystem aus Anwendern, Software-Frameworks und Tutorials.
+Die Geschwindigkeit der CPU ist eher nebensächlich. Die CPU sollte nur nicht älter als 2015 sein, da zu diesem Zeitpunkt wichtige Hardware-Protokolle eingeführt wurden.
+Der Systemspeicher ``(RAM)`` sollte mindestens 16GB betragen, wenn man mehr als nur ein ``Proof-Of-Concept`` erstellen möchte.
+
+Die unterste Grenze für einen spassigen Einstieg liegt bei einem Laptop mit 16GB Systemspeicher ohne Grafikarte aus dem Jahr 2015.
+Dieser PC kann einfache Modelle ausführen und leichte Probleme mit KI lösen: z.B. Videoüberwachung (Personenerkennung) durchführen, einfache Chat-Bots zur Verfügung stellen (für z.B. Nachhilfeaufgaben, Vokabeltrainer, Texterschließungstools), aus einfacher Sprache Texte erstellen oder ein Recherche-Tool mit Internetanbindung zum Laufen bringen.
+
+Die gehobene Mittelklasse ist ein PC mit 16GB Systemspeicher und 12GB Grafikartenspeicher (idealerweise eine NVIDIA-Grafikkarte z.B. RTX5070 > RTX4070 > RTX 4060TI > RTX 3080 TI).
+Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander verarbeiten, komplexe Informationen aus Bilder entnehmen, Audiodateien erstellen oder längere Programme schreiben.
+
+Die Oberklasse bis High End ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
+Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander gleichzeitig, komplexe Informationen aus vielen Bilder entnehmen, Audiodateien in wenigen Sekunden erstellen oder Programme mit höherer Komplexität schreiben. Dabei richtet sich diese Klasse eher an erfahrenere Nutzer, die diesen potenten PC auch durch andere Anwendungen ausreizen möchten.
+
+### Betriebsystem
+Diese Anleitung richtet sich gezielt an Windows 10/11 Nutzer. Alle Tools funktionieren jedoch äquivalent unter Linux bzw. WSL2.
+
+### Benötigte Software / Modelle (Schnellzugriff):
 - [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe)
 - [Aktuellstes LLama C++ - Release](https://github.com/ggml-org/llama.cpp/releases)
 - [Gewünschtes OpenSource KI-Modell im GGUF-Format](https://huggingface.co/models?search=gguf)
 - [ggf. Software zum Auslesen der Grafikkarte](https://www.techpowerup.com/gpuz/)
 
-0. Zuerst [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) herunterladen und installieren. Diese C++-Laufzeitbibliotheken von Microsoft sind in der Regel bereits installiert. Dann wird einfach ein nur Update  mit dieser ``exe.``-Datei durchgeführt.
+1. Zuerst [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) herunterladen und installieren. Diese C++-Laufzeitbibliothek von Microsoft sind in der Regel bereits auf dem PC installiert. In diesem Fall spielt man dann nur ein Update mit dieser ``exe.``-Datei auf.
 
-1. Wenn die Spezifikationen des PCs unbekannt sind, kann mit dem portablen und kostenfreiem Tool [GPU-Z](https://www.techpowerup.com/gpuz/) das System ausgelesen werden:
+2. Wenn die Spezifikationen des eignen PCs unbekannt sind, kann mit dem portablen und kostenfreiem Tool [GPU-Z](https://www.techpowerup.com/gpuz/) das System ausgelesen werden:
    - Unten findet man unter ``Computing`` die Checkbox für ``CUDA``.
    - Unter ``Memory Size`` findet man den ``VRAM`` in MB (Wert / 1000 = Wert in GB)
    - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
+   - ![Beispielhafte Darstellung](/docs/rtx4090.png = 400x567)
 
 2. Danach muss ein passendes LLama C++ - Release heruntergeladen werden [Aktuellstes LLama C++ - Release]([https://github.com/ggml-org/llama.cpp/releases]):
     - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
