@@ -33,7 +33,8 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
 2. Wenn die Spezifikationen des eignen PCs unbekannt sind, kann mit dem portablen und kostenfreiem Tool [GPU-Z](https://www.techpowerup.com/gpuz/) das System ausgelesen werden:
    - Unten findet man unter ``Computing`` die Checkbox für ``CUDA``.
    - Unter ``Memory Size`` findet man den ``VRAM`` in MB (Wert / 1000 = Wert in GB)
-   - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden. 
+   - Unter Windows 10/11 -> Einstellungen -> System -> Info kann der ``Installierte RAM`` ausgelesen werden.
+   
    ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
 2. Danach muss ein passendes [LLama C++ - Release]([https://github.com/ggml-org/llama.cpp/releases) heruntergeladen werden:
@@ -112,7 +113,7 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
 5. In einem beliebigen Stammverzeichnis (z.B.KI-Spielwiese) muss nun folgende Ordnerstruktur angelegt werden:
     ```
     - ROOT (KI-Spielwiese)
-        # Start.bat                     <- siehe 8. Punkt
+        # Start.bat                     <- siehe 6. Punkt
         - models                        <- In dem Ordner werden alle Modelle im .GGUF-Format hinterlegt
             # Qwen3-4B-Q4_K_M.gguf
         - llamacpp                      <- In dem Ordner wird der gesamte Inhalt aus dem LLama C++ Release hinterlegt (ohne Unterordner!)
@@ -122,11 +123,10 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
             # u.v.m.
     ```
 
-6. Zumdem wird nun eine ``.BAT``-Datei zum Starten benötigt.
-7. Diese muss nur in des Stammverzeichnis abgelegt werden.
-8. Der Inhalt der Dateien sieht so aus:
+6. Zumdem wird nun eine ``.BAT``-Datei zum Starten benötigt. Diese muss nur in des Stammverzeichnis abgelegt werden.
+7. Der Inhalt der Dateien sieht so aus und kann [HIER](/Start.bat) heruntergeladen werden:
 
-    ``Start.bat`` und kann [HIER](/Start.bat) heruntergeladen werden.
+    ``Start.bat`` 
     ```
     @echo off
     
@@ -135,18 +135,21 @@ Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools fun
     pause
     ```
 
-9. Mit einem Doppelklick öffnet sich das ``Windows-Terminal`` und stellt unmittelbar den ``KI-Server`` bereit.
-10. Dieser ist von jedem Browser über diese Adresse erreichbar: ``http://127.0.0.1:8033`` (Auf Wunsch kann der Port in der ``Start.bat`` verändert werden).
+8. Mit einem Doppelklick öffnet sich das ``Windows-Terminal`` und stellt unmittelbar den ``KI-Server`` bereit.
+9. Dieser ist von jedem Browser über diese Adresse erreichbar: ``http://127.0.0.1:8033`` (Auf Wunsch kann der Port in der ``Start.bat`` verändert werden).
     Alternativ kann man im ``Terminal`` mit ``SHIFT + LINKSKLICK`` direkt den Browser starten und der Adresse folgen.
-11. Es öffnet sich eine Benutzeroberfläche, welche von fast allen Anbietern genutzt wird. Doch zuerst muss das Modell geladen werden.
-    Dies geschieht mit einem Klick auf ``Select Modell`` können alle Modelle die sich im Ordner ``models`` befinden ausgewählt werden.
+10. Es öffnet sich eine Benutzeroberfläche, welche von fast allen Anbietern genutzt wird. Doch zuerst muss das Modell geladen werden.
+    Dies geschieht mit einem Klick auf ``Select model`` können alle Modelle die sich im Ordner ``models`` befinden ausgewählt werden.
     Das Modell ist fertig geladen, wenn hinter dem Modellnamen ein grüner Punkt erscheint. Bei größeren 14B Modellen kann dies teilweise bis zu 3 Minuten dauern.
-    LLAMA C++ kann, in Abhängigkeit vom verfügbaren Speicher, auch bis zu vier Modelle parallel laden. 
+    LLAMA C++ kann, in Abhängigkeit vom verfügbaren Speicher, auch bis zu vier Modelle parallel laden.
+
 ![Beispielhafte Darstellung](/docs/llamacpp1.png)
-12. Wenn das Modell geladen wurd, kann die erste Eingabe durch den Nutzer starten.
+
+11. Wenn das Modell geladen wurd, kann die erste Eingabe durch den Nutzer starten.
+
 ![Beispielhafte Darstellung](/docs/llamacpp2.png)
     Auf der linken Seite tauchen alle geführten Unterhaltungen auf. Diese werden im Cache des jeweiligen Browser gespeichert und verlassen nicht den lokalen Computer.
     ``THINKING``-Modelle starten ihre Eingabe mit dem ``Reasoning``. Dies kann oben rechts auf den Doppel-Pfeil ausgeklappt werden.
     Unter der Ausgabe findet man die verwendeten Tokens aus Ein- und Ausgabe, die benötigte Zeit und die Tokens pro Sekunde.
 
-13. Beenden der Spielwiese: Der Browser kann geschlossen werden, das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
+12. Beenden der Spielwiese: Der Browser kann geschlossen werden, das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
