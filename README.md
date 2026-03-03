@@ -1,4 +1,4 @@
-# Einrichtung einer lokalen KI-Spielwiese
+# Einrichtung einer lokalen KI-Spielwiese (WIP03.03.26)
 
 Diese Anleitung richtet sich an alle, die in erster Linie verschiedene lokale KI-Modelle kennenlernen und ausprobieren möchten.
 Diese angeleitete Spielerei mit verschiedenen KI-Modellen kann auch einen Weg zur eigenen lokalen KI-Lösung ebnen, denn die Distanz von der Spielerei zur ersten Problemlösung ist manchmal gar nicht so weit.
