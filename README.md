@@ -14,7 +14,7 @@ Diese angeleitete Spielerei mit verschiedenen KI-Modellen kann auch einen Weg zu
 Zumdem ist es ein Irrglaube, dass nur riesige Cloud-Modelle ein fertiges Produkt liefern könnten - das mag zwar auf sehr komplexe Software-Projekte zutreffen - für viele kleine bis mittelschwere Probleme können lokale Open-Source KI-Lösungen einen validen Lösungsansatz liefern.   
 Einen potenten PC vorausgesetzt, kann später sogar mithilfe eines lokalen Coding-Agents das erste einfache bis mittelschwere Projekt umgesetzt werden.
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
 
 ### Benötigte Hardware
 Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools funktionieren jedoch äquivalent unter ``Linux`` bzw. ``WSL2`` oder mit Apple im ``Metal-Framework``.
@@ -31,7 +31,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander verarbeiten, 
 Die ``Oberklasse bis High-End`` ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
 Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch gleichzeitig verarbeiten, komplexe Informationen aus vielen Bildern entnehmen, Audiodateien in wenigen Sekunden erstellen oder Programme mit höherer Komplexität schreiben. Dabei richtet sich diese Klasse eher an erfahrenere Nutzer, die diesen potenten PC auch durch andere Anwendungen ausreizen möchten.
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
 
 ### Benötigte Software
 - [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe)
@@ -57,7 +57,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch
     - ``Windows x64 (HIP)`` oder ``Windows x64 (Vulkan)``, wenn der PC über eine **AMD** Grafikkarte verfügt (GPU-Z zeigt dann das AMD-LOGO oben rechts) 
     - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre die ``HIP``-Variante.
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
 
 ### Kleine Modellkunde
 Nun muss ein passendes Modell im ``.GGUF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden vertrauenswürdigen Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
@@ -113,7 +113,7 @@ Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es f
     - Generell gilt: Es sollten keine weiteren Programme im Hintergrund laufen.
     - Soll das Modell testweise nur in der ``CPU`` also ohne eine Grafikkarte genutzt werden gilt: ``Modellgröße in GB`` = `` RAM GB`` **-** ``6 GB``
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
         
 ### Modellempfehlung für den Einstieg
 Gute Modelle mit zunehmender Größe und Qualität sind (Stand März 2026) ``AUF GENAUE BEZEICHNUNG ACHTEN!``:
@@ -141,7 +141,7 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
       - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
       - [Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf) - ``25 GB`` mind 32 GB RAM und 24 GB VRAM (lange Ladezeit, aber super effizienter Code)
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
 
 ### Starten der ersten Inferenz
 1. Zu Testzwecken sollte zunächst nur das kleine Modell [Qwen3.5-4B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q4_K_M.gguf) geladen werden.
@@ -188,13 +188,13 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
     ``THINKING``-Modelle starten ihre Eingabe mit dem ``Reasoning``. Dies kann oben rechts auf den Doppel-Pfeil ausgeklappt werden.
     Unter der Ausgabe findet man die verwendeten Tokens aus Ein- und Ausgabe, die benötigte Zeit und die Tokens pro Sekunde.
 
-[Zurück nach oben](#ziel)
+[Zurück nach oben](#übersicht)
 
 ### Beenden der Inferenz
 - Der Browser kann normal geschlossen werden. 
 - Das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. 
 - Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
 
-[Zurück nach oben](#ziel)   
+[Zurück nach oben](#übersicht)   
 
 WIP
