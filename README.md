@@ -1,15 +1,10 @@
 # Einrichtung einer lokalen KI-Spielwiese (WIP24.03.2026)
 ### Übersicht
 - [Ziel](#ziel)
-
 - [Benötigte Hardware](#benötigte-hardware)
-
 - [Benötigte Software](#benötigte-software)
-
 - [Kleine Modellkunde](#kleine-modellkunde)
-
 - [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
-
 - [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
 
 ### Ziel
@@ -17,6 +12,7 @@ Diese Anleitung richtet sich an alle, die in erster Linie verschiedene lokale KI
 Diese angeleitete Spielerei mit verschiedenen KI-Modellen kann auch einen Weg zur eigenen lokalen KI-Lösung ebnen, denn die Distanz von der Spielerei zur ersten Problemlösung ist manchmal gar nicht so weit.
 Zumdem ist es ein Irrglaube, dass nur riesige Cloud-Modelle ein fertiges Produkt liefern könnten - das mag zwar auf sehr komplexe Software-Projekte zutreffen - für viele kleine bis mittelschwere Probleme können lokale Open-Source KI-Lösungen einen validen Lösungsansatz liefern.   
 Einen potenten PC vorausgesetzt, kann später sogar mithilfe eines lokalen Coding-Agents das erste einfache bis mittelschwere Projekt umgesetzt werden.
+[Zurück nach oben](#ziel)
 
 ### Benötigte Hardware
 Diese Anleitung richtet sich gezielt an ``Windows 10/11`` Nutzer. Alle Tools funktionieren jedoch äquivalent unter ``Linux`` bzw. ``WSL2`` oder mit Apple im ``Metal-Framework``.
@@ -32,6 +28,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander verarbeiten, 
 
 Die ``Oberklasse bis High-End`` ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
 Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch gleichzeitig verarbeiten, komplexe Informationen aus vielen Bildern entnehmen, Audiodateien in wenigen Sekunden erstellen oder Programme mit höherer Komplexität schreiben. Dabei richtet sich diese Klasse eher an erfahrenere Nutzer, die diesen potenten PC auch durch andere Anwendungen ausreizen möchten.
+[Zurück nach oben](#ziel)
 
 ### Benötigte Software
 - [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe)
@@ -56,25 +53,26 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch
     - (Optional kann auch CUDA 13.1 bei den neusten Grafikkarten verwendet werden)
     - ``Windows x64 (HIP)`` oder ``Windows x64 (Vulkan)``, wenn der PC über eine **AMD** Grafikkarte verfügt (GPU-Z zeigt dann das AMD-LOGO oben rechts) 
     - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre die ``HIP``-Variante.
+[Zurück nach oben](#ziel)
 
 ### Kleine Modellkunde
-Nun muss ein passendes Modell im ``.GGUF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
-Bei der Auswahl des Modells müssen einige Dinge beachtet werden:
+Nun muss ein passendes Modell im ``.GGUF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden vertrauenswürdigen Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
+Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es folgende Aspekte zu beachten:
 - **Trainingsparameter**:
-    - Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
-    - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke trainiert. Auch wenn sie in anderen Bereichen nutzlos erscheinen, liegt hier die Zukunft bei der Pruduktentwicklung!
-    - ``7B-8B-Modelle`` decken breitere Einsatzbereiche ab und haben eine sehr gute Performance. Sie sind bei komplexen Problemen eher überfordert.
-    - ``14B-20B-Modelle`` sind im Jahr 2026 fast echte All-Rounder für lokale Anwendungen geworden. Sie benötigen allerdings einen PC der ``gehobenen Mittelklasse`` bzw. ``Oberklasse``.
-    - ``> 120B-Modelle`` sind derzeit in vielen Einsatzbereichen **State-Of-The-Art**. Hier liegt der Bedarf an VRAM+RAM teilweise bei bis zu 240 GB.
-    - Wichtig: Je nach Architektur sind verschiedene Modellgruppen in Einzelbereichen unterschiedlich stark, daher lässt sich ein ``8B-LAMA-Modell`` von Meta nicht direkt mit einem ``8B-Qwen-Modell`` von Alibaba Cloud vergleichen. **Rule-Of-Thumb**: Liegt zwischen den Modellen eine Zeitspanne von 3-4 Monaten, dann ist das ältere Modell meist schlechter.
-    - Seit Q3 2025 werden auch ``MoE-Modelle`` (Mixture of Experts) trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei der Anfrage (z.B: Qwen3-Next-80B-A3B).
-    - Die Bewertung dieser Modelle ist nicht immer ganz einfach. **sehr grobe Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 2 = 16B)
+  - Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
+  - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke trainiert. Auch wenn sie in anderen Bereichen nutzlos erscheinen, liegt hier die Zukunft bei der Pruduktentwicklung!
+  - ``7B-8B-Modelle`` decken breitere Einsatzbereiche ab und haben eine sehr gute Performance. Sie sind bei komplexen Problemen eher überfordert.
+  - ``14B-20B-Modelle`` sind im Jahr 2026 fast echte All-Rounder für lokale Anwendungen geworden. Sie benötigen allerdings einen PC der ``gehobenen Mittelklasse`` bzw. ``Oberklasse``.
+  - ``> 120B-Modelle`` sind derzeit in vielen Einsatzbereichen **State-Of-The-Art**. Hier liegt der Bedarf an VRAM+RAM teilweise bei bis zu 240 GB.
+  - Wichtig: Je nach Architektur sind verschiedene Modellgruppen in Einzelbereichen unterschiedlich stark, daher lässt sich ein ``8B-LAMA-Modell`` von Meta nicht direkt mit einem ``8B-Qwen-Modell`` von Alibaba Cloud vergleichen. **Rule-Of-Thumb**: Liegt zwischen den Modellen eine Zeitspanne von 3-4 Monaten, dann ist das ältere Modell meist schlechter.
+  - Seit Q3 2025 werden auch ``MoE-Modelle`` (Mixture of Experts) trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei der Anfrage (z.B: Qwen3-Next-80B-A3B).
+  - Die Bewertung dieser Modelle ist nicht immer ganz einfach. **sehr grobe Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 2 = 16B)
         
 - **Quantifizierung**
-    - Modelle müssen insbesondere für den lokalen Einsatz "komprimiert" werden. Normalerweise laufen Modelle mit 32-Bit-Gleitkomma - diese Präzision kostet viel Speicher und Strom.
-    - Durch geschicktes "quantifizieren" verlieren einige Modelle nur wenig Präzision (1%-3%), wenn sie auf 8-Bit-Ganzzahl heruntergerechnet werden.
-    - Bei einer 4-Bit-Quantisierung verlieren einige Modelle mehr Präzision (5%-8%). Dies ist aber bei größeren Modellen durchaus noch akzeptabel.
-    - **Rule-Of-Thumb**: ``8Q_0`` > ``Q4_K_M`` bei gleicher Parametergröße (Andere Quantifizierungen sollten als Anfänger eher gemieden werden, [Benchmark des Präzisionsverlusts](https://gist.github.com/Artefact2/b5f810600771265fc1e39442288e8ec9))
+  - Modelle müssen insbesondere für den lokalen Einsatz "komprimiert" werden. Normalerweise laufen Modelle mit 32-Bit-Gleitkomma - diese Präzision kostet viel Speicher und Strom.
+  - Durch geschicktes "quantifizieren" verlieren einige Modelle nur wenig Präzision (1%-3%), wenn sie auf 8-Bit-Ganzzahl heruntergerechnet werden.
+  - Bei einer 4-Bit-Quantisierung verlieren einige Modelle mehr Präzision (5%-8%). Dies ist aber bei größeren Modellen durchaus noch akzeptabel.
+  - **Rule-Of-Thumb**: ``8Q_0`` > ``Q4_K_M`` bei gleicher Parametergröße (Andere Quantifizierungen sollten als Anfänger eher gemieden werden, [Benchmark des Präzisionsverlusts](https://gist.github.com/Artefact2/b5f810600771265fc1e39442288e8ec9))
         
 - **Modelltyp**
     - Nicht jedes Modell eignet sich für alle "großen" Aufgabenbereiche. Es haben sich ein paar grobe Aufgabenbereiche mit folgenden Beschreibungen durchgesetzt:
@@ -110,6 +108,7 @@ Bei der Auswahl des Modells müssen einige Dinge beachtet werden:
     - Maximale Geschwindigkeit: ``Modellgröße in GB`` = `` VRAM GB`` **-** ``3 GB``
     - Generell gilt: Es sollten keine weiteren Programme im Hintergrund laufen.
     - Soll das Modell testweise nur in der ``CPU`` also ohne eine Grafikkarte genutzt werden gilt: ``Modellgröße in GB`` = `` RAM GB`` **-** ``6 GB``
+[Zurück nach oben](#ziel)
         
 ### Modellempfehlung für den Einstieg
 Gute Modelle mit zunehmender Größe und Qualität sind (Stand März 2026) ``AUF GENAUE BEZEICHNUNG ACHTEN!``:
@@ -136,7 +135,7 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
     - [Modellseite - Mistral AI - Devstral 2 Small **24B**](https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512) - europäische KI-Meisterleistung für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)
       - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
       - [Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf) - ``25 GB`` mind 32 GB RAM und 24 GB VRAM (lange Ladezeit, aber super effizienter Code)
-
+[Zurück nach oben](#ziel)
 
 ### Starten der ersten Inferenz
 1. Zu Testzwecken sollte zunächst nur das kleine Modell [Qwen3.5-4B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q4_K_M.gguf) geladen werden.
@@ -182,12 +181,12 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
     Auf der linken Seite tauchen alle geführten Unterhaltungen auf. Diese werden im Cache des jeweiligen Browser gespeichert und verlassen nicht den lokalen Computer.
     ``THINKING``-Modelle starten ihre Eingabe mit dem ``Reasoning``. Dies kann oben rechts auf den Doppel-Pfeil ausgeklappt werden.
     Unter der Ausgabe findet man die verwendeten Tokens aus Ein- und Ausgabe, die benötigte Zeit und die Tokens pro Sekunde.
+[Zurück nach oben](#ziel)
 
-13. Beenden der Spielwiese: 
-    -   Der Browser kann normal geschlossen werden, 
-    -   Das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. 
-    -   Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
-    
-14. **Empfehlungen für Experten** 
+### Beenden der Spielwiese
+- Der Browser kann normal geschlossen werden. 
+- Das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. 
+- Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
+[Zurück nach oben](#ziel)   
 
 WIP
