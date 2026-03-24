@@ -50,6 +50,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch
    
    ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
+
 3. Danach muss ein passendes ``LLama C++``-Release heruntergeladen werden. Dies findet man unter [Release]([https://github.com/ggml-org/llama.cpp/releases):
   - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
   - ``Windows x64 (CUDA 12) - CUDA 12.4 DLLs``, wenn der PC über eine **NVIDIA** Grafikkarte verfügt (GPU-Z zeigt dann bei CUDA einen Haken)
