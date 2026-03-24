@@ -1,10 +1,15 @@
 # Einrichtung einer lokalen KI-Spielwiese (WIP24.03.2026)
 ### Übersicht
-[Ziel](#ziel)
+- [Ziel](#ziel)
+
 [Benötigte Hardware](#benötigte-hardware)
+
 [Benötigte Software](#benötigte-software)
+
 [Kleine Modellkunde](#kleine-modellkunde)
+
 [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
+
 [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
 
 ### Ziel
