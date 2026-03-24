@@ -6,7 +6,7 @@
 - [Kleine Modellkunde](#kleine-modellkunde)
 - [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
 - [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
-- [Beenden der Inferenz][#beenden-der-inferenz]
+- [Beenden der Inferenz](#beenden-der-inferenz)
 
 ### Ziel
 Diese Anleitung richtet sich an alle, die in erster Linie verschiedene lokale KI-Modelle kennenlernen und ausprobieren möchten.
