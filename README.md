@@ -6,12 +6,14 @@
 - [Kleine Modellkunde](#kleine-modellkunde)
 - [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
 - [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
+- [Beenden der Inferenz][#beenden-der-inferenz]
 
 ### Ziel
 Diese Anleitung richtet sich an alle, die in erster Linie verschiedene lokale KI-Modelle kennenlernen und ausprobieren möchten.
 Diese angeleitete Spielerei mit verschiedenen KI-Modellen kann auch einen Weg zur eigenen lokalen KI-Lösung ebnen, denn die Distanz von der Spielerei zur ersten Problemlösung ist manchmal gar nicht so weit.
 Zumdem ist es ein Irrglaube, dass nur riesige Cloud-Modelle ein fertiges Produkt liefern könnten - das mag zwar auf sehr komplexe Software-Projekte zutreffen - für viele kleine bis mittelschwere Probleme können lokale Open-Source KI-Lösungen einen validen Lösungsansatz liefern.   
 Einen potenten PC vorausgesetzt, kann später sogar mithilfe eines lokalen Coding-Agents das erste einfache bis mittelschwere Projekt umgesetzt werden.
+
 [Zurück nach oben](#ziel)
 
 ### Benötigte Hardware
@@ -28,6 +30,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander verarbeiten, 
 
 Die ``Oberklasse bis High-End`` ist ein PC mit mind. 32GB Systemspeicher und mind. 16GB Grafikartenspeicher (RTX5090(32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB))
 Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch gleichzeitig verarbeiten, komplexe Informationen aus vielen Bildern entnehmen, Audiodateien in wenigen Sekunden erstellen oder Programme mit höherer Komplexität schreiben. Dabei richtet sich diese Klasse eher an erfahrenere Nutzer, die diesen potenten PC auch durch andere Anwendungen ausreizen möchten.
+
 [Zurück nach oben](#ziel)
 
 ### Benötigte Software
@@ -53,6 +56,7 @@ Dieser PC kann: Die Ausgaben mehrerer kleiner Modelle nacheinander und ggf. auch
     - (Optional kann auch CUDA 13.1 bei den neusten Grafikkarten verwendet werden)
     - ``Windows x64 (HIP)`` oder ``Windows x64 (Vulkan)``, wenn der PC über eine **AMD** Grafikkarte verfügt (GPU-Z zeigt dann das AMD-LOGO oben rechts) 
     - ``Achtung``: Hier muss je nach Bauart und vorhandenem Treiber gestetet werden, besser wäre die ``HIP``-Variante.
+
 [Zurück nach oben](#ziel)
 
 ### Kleine Modellkunde
@@ -108,6 +112,7 @@ Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es f
     - Maximale Geschwindigkeit: ``Modellgröße in GB`` = `` VRAM GB`` **-** ``3 GB``
     - Generell gilt: Es sollten keine weiteren Programme im Hintergrund laufen.
     - Soll das Modell testweise nur in der ``CPU`` also ohne eine Grafikkarte genutzt werden gilt: ``Modellgröße in GB`` = `` RAM GB`` **-** ``6 GB``
+
 [Zurück nach oben](#ziel)
         
 ### Modellempfehlung für den Einstieg
@@ -135,6 +140,7 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
     - [Modellseite - Mistral AI - Devstral 2 Small **24B**](https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512) - europäische KI-Meisterleistung für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)
       - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
       - [Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf) - ``25 GB`` mind 32 GB RAM und 24 GB VRAM (lange Ladezeit, aber super effizienter Code)
+
 [Zurück nach oben](#ziel)
 
 ### Starten der ersten Inferenz
@@ -181,12 +187,14 @@ Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller ver
     Auf der linken Seite tauchen alle geführten Unterhaltungen auf. Diese werden im Cache des jeweiligen Browser gespeichert und verlassen nicht den lokalen Computer.
     ``THINKING``-Modelle starten ihre Eingabe mit dem ``Reasoning``. Dies kann oben rechts auf den Doppel-Pfeil ausgeklappt werden.
     Unter der Ausgabe findet man die verwendeten Tokens aus Ein- und Ausgabe, die benötigte Zeit und die Tokens pro Sekunde.
+
 [Zurück nach oben](#ziel)
 
-### Beenden der Spielwiese
+### Beenden der Inferenz
 - Der Browser kann normal geschlossen werden. 
 - Das ``Windows-Terminal`` sollte mit dem Befehl ``STRG + C`` sauber beendet werden. 
 - Andernfalls sitzt das Modell noch solange im ``RAM`` oder ``VRAM``, bis der Speicher von anderen Programmen oder dem Neustart freigeräumt wird.
+
 [Zurück nach oben](#ziel)   
 
 WIP
