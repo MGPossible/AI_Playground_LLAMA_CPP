@@ -2,15 +2,15 @@
 ### Übersicht
 - [Ziel](#ziel)
 
-[Benötigte Hardware](#benötigte-hardware)
+- [Benötigte Hardware](#benötigte-hardware)
 
-[Benötigte Software](#benötigte-software)
+- [Benötigte Software](#benötigte-software)
 
-[Kleine Modellkunde](#kleine-modellkunde)
+- [Kleine Modellkunde](#kleine-modellkunde)
 
-[Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
+- [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
 
-[Starten der ersten Inferenz](#starten-der-ersten-inferenz)
+- [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
 
 ### Ziel
 Diese Anleitung richtet sich an alle, die in erster Linie verschiedene lokale KI-Modelle kennenlernen und ausprobieren möchten.
