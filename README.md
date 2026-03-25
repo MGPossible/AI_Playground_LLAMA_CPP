@@ -85,7 +85,7 @@ Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Bill
 
 - Wichtig: Je nach Architektur sind verschiedene Modellgruppen in Einzelbereichen unterschiedlich stark, daher lässt sich ein ``8B-LAMA-Modell`` von Meta nicht direkt mit einem ``8B-Qwen-Modell`` von Alibaba Cloud vergleichen. **Rule-Of-Thumb**: Liegt zwischen den Modellen eine Zeitspanne von 3-4 Monaten, dann ist das ältere Modell meist schlechter.
 - Seit Q3 2025 werden auch ``MoE-Modelle`` (Mixture of Experts) trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei der Anfrage (z.B: Qwen3-Next-80B-A3B).
-- Die Bewertung dieser Modelle ist nicht immer ganz einfach. **sehr grobe Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 3 = 24B)
+- Die Bewertung dieser Modelle ist nicht immer ganz einfach. **Sehr grobe Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 3 = 24B)
         
 **Quantifizierung**  
 Modelle müssen insbesondere für den lokalen Einsatz "komprimiert" werden. Normalerweise laufen Modelle mit 32-Bit-Gleitkomma - diese Präzision kostet viel Speicher und Strom.
@@ -130,7 +130,7 @@ Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichz
 [Zurück nach oben](#übersicht)
         
 ### Modellempfehlung für den Einstieg
-## (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
+### (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
 Im folgendem wird nun eine kleine Auswahl an Modellen mit zunehmender Größe und Qualität aufgelistet: 
 Diese Modelle sind nicht in allen Bereichen mit den State-Of-The-Art-Cloud-Modellen vergleichbar (https://arena.ai/de/leaderboard/) 
 
@@ -154,14 +154,14 @@ Erfahrene und vertrauenswürdige Anbieter von quantifizierten Modellen sind [Bar
 [Zurück nach oben](#übersicht)
 
 ### Modellempfehlung für spezielle Einsatzzwecke
-## (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
+### (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
 
--[Modellseite - Tesslate - Omnicoder](https://huggingface.co/Tesslate/OmniCoder-9B) - *finde-tuned Modell auf Basis von Qwen3.5-9B. Geeignet für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)*  
-  -[OmniCoder-9B-Q4_K_M.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q4_K_M.gguf) - ``5.9 GB`` benötigt mind. 16GB RAM (überraschend guter Output, langsam) **Vorschlag für System mit 16GB RAM**
-  -[OmniCoder-9B-Q8_0.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q8_0.gguf) -``9.6 GB`` benötigt mind. 16GB RAM und 8 GB VRAM (schneller und besserer Output, als 9B mit Q4)
+- [Modellseite - Tesslate - Omnicoder](https://huggingface.co/Tesslate/OmniCoder-9B) - *finde-tuned Modell auf Basis von Qwen3.5-9B. Geeignet für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)*  
+  - [OmniCoder-9B-Q4_K_M.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q4_K_M.gguf) - ``5.9 GB`` benötigt mind. 16GB RAM (überraschend guter Output, langsam). **Vorschlag für ein System mit 16GB RAM!**
+  - [OmniCoder-9B-Q8_0.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q8_0.gguf) -``9.6 GB`` benötigt mind. 16GB RAM und 8 GB VRAM (schneller und besserer Output, als 9B mit Q4)
 
 - [Modellseite - GPT-OSS **20B**](https://huggingface.co/openai/gpt-oss-20b) - *interessantes OpenSource-Modell von Open AI, bei Verwendung von MCP-Servern sehr mächtig*  
-  - [GPT-OSS-20b.gguf](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) - ``12.1 GB`` benötigt mind. 16GB RAM und 12 GB VRAM (**Vorschlag bei Verwendung von MCP-Servern**. Beachte die Start-Parameter in dieser [Anleitung](https://github.com/ggml-org/llama.cpp/discussions/15396)
+  - [GPT-OSS-20b.gguf](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) - ``12.1 GB`` benötigt mind. 16GB RAM und 12 GB VRAM. **Vorschlag bei Verwendung von MCP-Servern**. Beachte die Start-Parameter in dieser [Anleitung](https://github.com/ggml-org/llama.cpp/discussions/15396)
           
 - [Modellseite - Mistral AI - Devstral 2 Small **24B**](https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512) - *europäische KI-Meisterleistung für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)*  
   - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` benötigt mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
