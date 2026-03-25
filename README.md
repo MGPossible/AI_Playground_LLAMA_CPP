@@ -5,6 +5,7 @@
 - [Benötigte Software](#benötigte-software)
 - [Kleine Modellkunde](#kleine-modellkunde)
 - [Modellempfehlung für den Einstieg](#modellempehlung-für-den-einstieg)
+- [Modellempfehlung für spezielle Einsatzzwecke](#modellempfehlung-für-spezielle-einsatzzwecke)
 - [Starten der ersten Inferenz](#starten-der-ersten-inferenz)
 - [Beenden der Inferenz](#beenden-der-inferenz)
 
@@ -74,6 +75,7 @@ Diese Leistungsklasse richtet sich vor allem an fortgeschrittene Nutzer, die das
 ### Kleine Modellkunde
 Nun muss ein passendes Modell im ``.GGUF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden vertrauenswürdigen Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
 Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es folgende Aspekte zu beachten:  
+
 **Trainingsparameter**  
 Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
 - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke trainiert. Auch wenn sie in anderen Bereichen nutzlos erscheinen, liegt hier die Zukunft bei der Pruduktentwicklung!
@@ -89,7 +91,7 @@ Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Bill
 Modelle müssen insbesondere für den lokalen Einsatz "komprimiert" werden. Normalerweise laufen Modelle mit 32-Bit-Gleitkomma - diese Präzision kostet viel Speicher und Strom.
 Durch geschicktes "quantifizieren" verlieren einige Modelle nur wenig Präzision (1%-3%), wenn sie auf 8-Bit-Ganzzahl heruntergerechnet werden.
 Bei einer 4-Bit-Quantisierung verlieren einige Modelle mehr Präzision (5%-8%). Dies ist aber bei größeren Modellen durchaus noch akzeptabel.
-**Rule-Of-Thumb**: ``8Q_0`` > ``Q4_K_M`` bei gleicher Parametergröße (Andere Quantifizierungen sollten als Anfänger eher gemieden werden, [Benchmark des Präzisionsverlusts](https://gist.github.com/Artefact2/b5f810600771265fc1e39442288e8ec9)
+**Rule-Of-Thumb**: ``8Q_0`` > ``Q4_K_M`` bei gleicher Parametergröße. Andere Quantifizierungen sollten als Anfänger eher gemieden werden; vgl. [Benchmark des Präzisionsverlusts](https://gist.github.com/Artefact2/b5f810600771265fc1e39442288e8ec9).
         
 **Modelltyp**  
 Nicht jedes Modell eignet sich für alle Aufgabenbereiche. Es haben sich ein paar grobe Aufgabenbereiche mit folgenden Beschreibungen durchgesetzt:
@@ -119,9 +121,7 @@ Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichz
 - Generell gilt vereinfacht folgende Rechnung: ``Größe des Grafikkartenspeichers (VRAM)`` + ``Größe des Systemspeichers (RAM)`` - ``5 GB`` = ``Maximale Größe des Modells in GB``
 - Beispielrechnung: ``16 GB VRAM`` + ``32 GB RAM`` - ``5 GB`` = ``43 GB Modell`` 
 - Diese maximale Größe bringt in der Regel keine schnelle Verarbeitung mit sich (5 Tokens/s) und macht nur bei sehr komplexen Aufgaben und etwas Erfahrung Sinn.**Rule-Of-Thumb**: ``5 Tokens/s`` = ``Kaffetrinken zwischen den Eingaben`` (was nicht unbedingt schlecht ist)
-- Dies ist auf das *Offloading* des Modells in den langsamern ``RAM`` zurückzuführen.
-- *(Das OFFLOADING auf eine NVME-Festplatte ist zwar machbar, aber die Inferenz ist so langsam, dass die Stromkosten höher sind, als die Kosten für einen Cloud-Betreiber)*
-    
+- Dies ist auf das *Offloading* des Modells in den langsamern ``RAM`` zurückzuführen. *(Das OFFLOADING auf eine NVME-Festplatte ist zwar machbar, aber die Inferenz ist so langsam, dass die Stromkosten höher sind, als die Kosten für einen Cloud-Betreiber)*
 - Besser wäre folgende Berechnung: ``Modellgröße in GB`` = ``VRAM GB`` + ``1-2 GB``
 - Maximale Geschwindigkeit: ``Modellgröße in GB`` = `` VRAM GB`` **-** ``3 GB``
 - Generell gilt: Es sollten keine weiteren Programme im Hintergrund laufen.
@@ -130,30 +130,42 @@ Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichz
 [Zurück nach oben](#übersicht)
         
 ### Modellempfehlung für den Einstieg
-Gute Modelle mit zunehmender Größe und Qualität sind (Stand März 2026) ``AUF GENAUE BEZEICHNUNG ACHTEN!``:  
-Diese Modelle sind natürlich nicht direkt mit den State-Of-The-Art-Modellen vergleichbar (https://arena.ai/de/leaderboard/)  
-Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller verlinken. Darunter befinden sich die passenden Links zu den quantifizierten Modellen im ``.GGUF``-Format.   Erfahrene Anbieter von quantifizierten Modellen sind [Bartowski (Arcee AI)](https://huggingface.co/bartowski), [Unsloth AI](https://huggingface.co/unsloth) und [Team MRadermacher](https://huggingface.co/mradermacher).  
-Aktuelle Allrounder mit einer sehr guten Effizienz sind die Qwen3.5-Modelle - richtig eingebettet, schlagen diese Modelle deutlich größere Modelle!  
+## (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
+Im folgendem wird nun eine kleine Auswahl an Modellen mit zunehmender Größe und Qualität aufgelistet: 
+Diese Modelle sind nicht in allen Bereichen mit den State-Of-The-Art-Cloud-Modellen vergleichbar (https://arena.ai/de/leaderboard/) 
+
+Im Folgendem wird immer zuerst auf die offiziellen Modellseiten der Ersteller verlinkt. Darunter befinden sich dann die passenden ``Direct-Downloadlinks`` zu den quantifizierten Modellen im ``.GGUF``-Format.  
+Erfahrene und vertrauenswürdige Anbieter von quantifizierten Modellen sind [Bartowski (Arcee AI)](https://huggingface.co/bartowski), [Unsloth AI](https://huggingface.co/unsloth) und [Team MRadermacher](https://huggingface.co/mradermacher).  
+
 - [Modellseite - Qwen3.5 **0.8B**](https://huggingface.co/Qwen/Qwen3.5-0.8B)
-  - [Qwen3.5-0.8B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-0.8B-GGUF/resolve/main/Qwen_Qwen3.5-0.8B-Q8_0.gguf) - ``0.8 GB`` mind. 4GB RAM (Für Uralt-PCs, definitiv nur Proof-Of-Concept)  
+  - [Qwen3.5-0.8B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-0.8B-GGUF/resolve/main/Qwen_Qwen3.5-0.8B-Q8_0.gguf) - ``0.8 GB`` benötigt mind. 4GB RAM (Für Uralt-PCs, definitiv nur Proof-Of-Concept)  
 - [Modellseite - Qwen3.5 **2B**](https://huggingface.co/Qwen/Qwen3.5-2B)
-  - [Qwen3.5-2B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF/resolve/main/Qwen_Qwen3.5-2B-Q8_0.gguf) - ``2 GB`` mind. 6GB RAM (für sehr einfache Aufgaben, eher Proof-Of-Concept)
-- [Modellseite - Qwen3.5 **4B**](https://huggingface.co/Qwen/Qwen3.5-4B) - unglaublich starkes 4B-Modell für spezielle Aufgaben - schlägt in vielen Bereichen 20B-Modelle!
-  - [Qwen3.5-4B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q4_K_M.gguf) - ``2.9 GB`` mind. 8GB RAM (für komplexe Aufgaben einsetzbar) **Vorschlag für System mit nur 8GB RAM**
-  - [Qwen3.5-4B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q8_0.gguf) - ``4.5 GB`` mind. 8GB RAM und 2GB VRAM (für komplexe Aufgaben einsetzbar, bei 8GB steht ggf. nur ein reduzierter Kontext zur Verfügung, ggf. etwas langsam mit 8GB RAM)
-- [Modellseite - Qwen3.5 **9B**](https://huggingface.co/Qwen/Qwen3.5-9B) - unglaublich starkes 9B-Modell für spezielle und allgemeine Aufgaben - schlägt in manchen Bereichen 120B-Modelle!
-  - [Qwen3.5-9B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q4_K_M.gguf) - ``5.9 GB`` mind. 16GB RAM (überraschend guter Output, langsam) **Vorschlag für System mit 16GB RAM**
-  - [Qwen3.5-9B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q8_0.gguf) - ``9.5 GB`` mind. 16GB RAM und 8 GB VRAM (schneller und besserer Output, als 9B mit Q4)
-- [Modellseite - Qwen3.5 **27B**](https://huggingface.co/Qwen/Qwen3.5-27B) - schlägt Cloud-Modelle die 1-2 Quartale älter sind, leider nur auf High-End-PCs lauffähig
-  - [Qwen3.5-27B-Q3_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-27B-GGUF/resolve/main/Qwen_Qwen3.5-27B-Q3_K_M.gguf) - ``13.8 GB`` mind 32GB RAM und 16 GB VRAM (langsam, eher Proof-Of-Concept, sehr gute Ausgaben)
-  - [Qwen3.5-27B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-27B-GGUF/resolve/main/Qwen_Qwen3.5-27B-Q4_K_M.gguf) - ``17 GB`` mind. 32GB RAM und 24 GB VRAM (langsam, eher Proof-Of-Concept, sehr gute Ausgaben)
-         
-- [Modellseite - GPT-OSS **20B**](https://huggingface.co/openai/gpt-oss-20b) - interessantes OpenSource-Modell von Open AI, bei Verwendung von MCP-Servern sehr mächtig 
-  - [GPT-OSS-20b.gguf](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) - ``12.1 GB`` mind. 16GB RAM und 12 GB VRAM (**Vorschlag bei Verwendung von MCP-Servern**. Beachte die Start-Parameter in dieser [Anleitung](https://github.com/ggml-org/llama.cpp/discussions/15396)
+  - [Qwen3.5-2B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF/resolve/main/Qwen_Qwen3.5-2B-Q8_0.gguf) - ``2 GB`` benötigt mind. 6GB RAM (für sehr einfache Aufgaben, eher Proof-Of-Concept)
+- [Modellseite - Qwen3.5 **4B**](https://huggingface.co/Qwen/Qwen3.5-4B) - *unglaublich starkes 4B-Modell für spezielle Aufgaben - schlägt in vielen Bereichen 20B-Modelle!*  
+  - [Qwen3.5-4B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q4_K_M.gguf) - ``2.9 GB`` benötigt mind. 8GB RAM (für komplexe Aufgaben einsetzbar) **Vorschlag für System mit nur 8GB RAM**
+  - [Qwen3.5-4B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen_Qwen3.5-4B-Q8_0.gguf) - ``4.5 GB`` benötigt mind. 8GB RAM und 2GB VRAM (für komplexe Aufgaben einsetzbar, bei 8GB steht ggf. nur ein reduzierter Kontext zur Verfügung, ggf. etwas langsam mit 8GB RAM)
+- [Modellseite - Qwen3.5 **9B**](https://huggingface.co/Qwen/Qwen3.5-9B) - *unglaublich starkes 9B-Modell für spezielle und allgemeine Aufgaben - schlägt in manchen Bereichen 120B-Modelle!*
+  - [Qwen3.5-9B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q4_K_M.gguf) - ``5.9 GB`` benötigt mind. 16GB RAM (überraschend guter Output, langsam) **Vorschlag für System mit 16GB RAM**
+  - [Qwen3.5-9B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-9B-GGUF/resolve/main/Qwen_Qwen3.5-9B-Q8_0.gguf) - ``9.5 GB`` benötigt mind. 16GB RAM und 8 GB VRAM (schneller und besserer Output, als 9B mit Q4)
+- [Modellseite - Qwen3.5 **27B**](https://huggingface.co/Qwen/Qwen3.5-27B) - *schlägt Cloud-Modelle die 1-2 Quartale älter sind, leider nur auf High-End-PCs lauffähig*  
+  - [Qwen3.5-27B-Q3_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-27B-GGUF/resolve/main/Qwen_Qwen3.5-27B-Q3_K_M.gguf) - ``13.8 GB`` benötigt mind 32GB RAM und 16 GB VRAM (langsam, eher Proof-Of-Concept, sehr gute Ausgaben)
+  - [Qwen3.5-27B-Q4_K_M.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-27B-GGUF/resolve/main/Qwen_Qwen3.5-27B-Q4_K_M.gguf) - ``17 GB`` benötigt mind. 32GB RAM und 24 GB VRAM (langsam, eher Proof-Of-Concept, sehr gute Ausgaben)
+
+[Zurück nach oben](#übersicht)
+
+### Modellempfehlung für spezielle Einsatzzwecke
+## (Stand: März 2026) - ``AUF GENAUE BEZEICHNUNG ACHTEN!``
+
+-[Modellseite - Tesslate - Omnicoder](https://huggingface.co/Tesslate/OmniCoder-9B) - *finde-tuned Modell auf Basis von Qwen3.5-9B. Geeignet für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)*  
+  -[OmniCoder-9B-Q4_K_M.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q4_K_M.gguf) - ``5.9 GB`` benötigt mind. 16GB RAM (überraschend guter Output, langsam) **Vorschlag für System mit 16GB RAM**
+  -[OmniCoder-9B-Q8_0.gguf](https://huggingface.co/bartowski/Tesslate_OmniCoder-9B-GGUF/resolve/main/Tesslate_OmniCoder-9B-Q8_0.gguf) -``9.6 GB`` benötigt mind. 16GB RAM und 8 GB VRAM (schneller und besserer Output, als 9B mit Q4)
+
+- [Modellseite - GPT-OSS **20B**](https://huggingface.co/openai/gpt-oss-20b) - *interessantes OpenSource-Modell von Open AI, bei Verwendung von MCP-Servern sehr mächtig*  
+  - [GPT-OSS-20b.gguf](https://huggingface.co/ggml-org/gpt-oss-20b-GGUF) - ``12.1 GB`` benötigt mind. 16GB RAM und 12 GB VRAM (**Vorschlag bei Verwendung von MCP-Servern**. Beachte die Start-Parameter in dieser [Anleitung](https://github.com/ggml-org/llama.cpp/discussions/15396)
           
-- [Modellseite - Mistral AI - Devstral 2 Small **24B**](https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512) - europäische KI-Meisterleistung für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)
-  - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
-  - [Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf) - ``25 GB`` mind 32 GB RAM und 24 GB VRAM (lange Ladezeit, aber super effizienter Code)
+- [Modellseite - Mistral AI - Devstral 2 Small **24B**](https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512) - *europäische KI-Meisterleistung für Terminal-Coding-Tools wie [Crush CLI](https://github.com/charmbracelet/crush)*  
+  - [Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q4_K_M.gguf) - ``14.3 GB`` benötigt mind. 32 GB RAM und 16 GB VRAM (lange Ladezeit, aber super effizienter Code)
+  - [Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf](https://huggingface.co/bartowski/mistralai_Devstral-Small-2-24B-Instruct-2512-GGUF/resolve/main/mistralai_Devstral-Small-2-24B-Instruct-2512-Q8_0.gguf) - ``25 GB`` benötigt mind 32 GB RAM und 24 GB VRAM (lange Ladezeit, aber super effizienter Code)
 
 [Zurück nach oben](#übersicht)
 
