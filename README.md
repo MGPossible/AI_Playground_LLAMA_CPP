@@ -9,44 +9,38 @@
 - [Beenden der Inferenz](#beenden-der-inferenz)
 
 ### Einleitung
-Diese Anleitung richtet sich an alle, welche die Chancen und Möglichkeiten lokaler KI-Modelle kennenlernen und praxisnah ausprobieren möchten.
-
-Das spielerische Erkunden unterschiedlicher Modelle kann dabei weit mehr sein als nur Experimentieren: Oft ist der Schritt von den ersten Versuchen hin zu einer konkreten Problemlösung überraschend klein.
-
-Gleichzeitig soll die Annahme, dass nur große Cloud-Modelle zu brauchbaren Ergebnissen führen, teilweise entkräftet werden. Zwar trifft das bei sehr komplexen Softwareprojekten häufig zu – doch für viele kleine bis mittelgroße Anwendungsfälle bieten lokale Open-Source-KI-Lösungen bereits heute überzeugende und praktikable Alternativen.
-
+Diese Anleitung richtet sich an alle, welche die Chancen und Möglichkeiten lokaler KI-Modelle kennenlernen und praxisnah ausprobieren möchten.  
+Das spielerische Erkunden unterschiedlicher Modelle kann dabei weit mehr sein als nur Experimentieren: Oft ist der Schritt von den ersten Versuchen hin zu einer konkreten Problemlösung überraschend klein.  
+Gleichzeitig soll die Annahme, dass nur große Cloud-Modelle zu brauchbaren Ergebnissen führen, teilweise entkräftet werden. Zwar trifft das bei sehr komplexen Softwareprojekten häufig zu – doch für viele kleine bis mittelgroße Anwendungsfälle bieten lokale Open-Source-KI-Lösungen bereits heute überzeugende und praktikable Alternativen.  
 Mit entsprechender Hardware lässt sich dieser Ansatz sogar weiter ausbauen: Mithilfe eines lokalen Coding-Agenten können erste eigene Projekte – von einfachen Tools bis hin zu anspruchsvolleren Anwendungen – eigenständig umgesetzt werden.
 
 [Zurück nach oben](#übersicht)
 
 ### Benötigte Hardware
-Diese Anleitung beschreibt die Nutzung der Tools unter ``Windows 10/11``. Die beschriebenen Tools lassen sich jedoch ebenso unter ``Linux``, über ``WSL2`` oder auf Apple-Systemen mithilfe des ``Metal-Frameworks`` verwenden.
+Diese Anleitung beschreibt die Nutzung der Tools unter ``Windows 10/11``. Die beschriebenen Tools lassen sich jedoch ebenso unter ``Linux``, über ``WSL2`` oder auf Apple-Systemen mithilfe des ``Metal-Frameworks`` verwenden.  
+Der entscheidende Faktor für lokale KI-Anwendungen ist die eigene Hardware – insbesondere die Grafikkarte. KI-Modelle profitieren stark von großem Grafikspeicher ``(VRAM)`` sowie von spezialisierten Recheneinheiten wie Tensor- bzw. Matrix-Tensor-Cores. NVIDIA hat sich hier mit CUDA und seinen Tensor-Cores als De-facto-Standard etabliert. AMD bietet technisch vergleichbare Lösungen, jedoch ist das Ökosystem aus Tools, Community und Dokumentation derzeit noch weniger ausgeprägt.  
+Die CPU spielt eine eher untergeordnete Rolle, sollte jedoch nicht älter als Baujahr 2016 sein, da ab diesem Zeitpunkt wichtige Hardware-Erweiterungen eingeführt wurden. Beim Arbeitsspeicher ``(RAM)`` gilt: 16 GB RAM sind das sinnvolle Minimum, wenn über reine Experimente hinaus gearbeitet werden soll. 
 
-Der entscheidende Faktor für lokale KI-Anwendungen ist die eigene Hardware – insbesondere die Grafikkarte. KI-Modelle profitieren stark von großem Grafikspeicher ``(VRAM)`` sowie von spezialisierten Recheneinheiten wie Tensor- bzw. Matrix-Tensor-Cores. NVIDIA hat sich hier mit CUDA und seinen Tensor-Cores als De-facto-Standard etabliert. AMD bietet technisch vergleichbare Lösungen, jedoch ist das Ökosystem aus Tools, Community und Dokumentation derzeit noch weniger ausgeprägt.
-
-Die CPU spielt eine eher untergeordnete Rolle, sollte jedoch nicht älter als Baujahr 2016 sein, da ab diesem Zeitpunkt wichtige Hardware-Erweiterungen eingeführt wurden. Beim Arbeitsspeicher ``(RAM)`` gilt: 16 GB RAM sind das sinnvolle Minimum, wenn über reine Experimente hinaus gearbeitet werden soll.
-
-``Einstiegsklasse``
+``Einstiegsklasse``  
 Die unterste Grenze für einen brauchbaren Einstieg bildet ein Laptop ab etwa 2016 mit 16 GB RAM – auch ohne dedizierte Grafikkarte. Damit lassen sich einfache Modelle ausführen und kleinere Aufgaben umsetzen, etwa:
 - einfache Chatbots (z. B. für Nachhilfe, Vokabeltraining oder Textverständnis)
 - grundlegende Textgenerierung
 - einfache Bild- oder Videoauswertungen (z. B. Personenerkennung bei niedriger FPS)
 - kleinere Recherche-Tools mit Internetanbindung
 
-``Mittelklasse``
+``Mittelklasse``  
 Ein System mit 16 GB RAM und etwa 12 GB VRAM (idealerweise mit einer NVIDIA-GPU, z.B. RTX5070 > RTX4070 > RTX 4060TI > RTX 3080 TI) bietet bereits deutlich mehr Möglichkeiten. Dazu gehören:
 - die Verarbeitung mehrerer Modelle in Folge
 - Bildanalyse mit höherer Komplexität
 - Audioverarbeitung und -generierung
 - Unterstützung beim Schreiben längerer Programme
 
-``Oberklasse / High-End``
+``Oberklasse / High-End``  
 Für anspruchsvollere Anwendungen empfiehlt sich ein System mit mindestens 32 GB RAM und 16 GB VRAM (z.B. RTX5090 (32GB) > RTX4090 (24GB) > RTX3090 (24GB) > RTX5080 (16GB) > RTX5070TI (16GB) > RTX4080 (16GB)). Solche Systeme ermöglichen:
 - parallele Nutzung mehrerer Modelle
 - umfangreiche Bild- und Datenanalysen
 - schnelle Audio- und Textgenerierung
-- Unterstützung bei komplexeren Softwareprojekten
-
+- Unterstützung bei komplexeren Softwareprojekten  
 Diese Leistungsklasse richtet sich vor allem an fortgeschrittene Nutzer, die das Potenzial ihrer Hardware auch über KI-Anwendungen hinaus ausschöpfen möchten.
 
 [Zurück nach oben](#übersicht)
@@ -58,7 +52,7 @@ Diese Leistungsklasse richtet sich vor allem an fortgeschrittene Nutzer, die das
 - [ggf. Software zum Auslesen der Grafikkarte](https://www.techpowerup.com/gpuz/)
 - [ggf. LLM-Fit zum Abschätzen der Modell-Performance](https://github.com/AlexsJones/llmfit/releases)
 
-1. Zu Beginn muss die ``C++-Laufzeitbibliothek`` von Microsoft [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) herunterladen und installieren. Sie ist in der Regel bereits auf dem PC installiert. In diesem Fall spielt man dann nur ein Update mit dieser ``exe.``-Datei auf.
+1. Zu Beginn muss die ``C++ - Laufzeitbibliothek`` von Microsoft [Microsoft Visual C++ Redistributable Version 14](https://aka.ms/vc14/vc_redist.x64.exe) heruntergeladen und installiert werden. Sie ist in der Regel bereits auf dem PC installiert. In diesem Fall spielt man dann nur ein Update mit dieser ``exe.``-Datei auf.
 
 2. Wenn die Spezifikationen des eigenen PCs unbekannt sind, kann mit dem portablen und kostenfreien Tool [GPU-Z](https://www.techpowerup.com/gpuz/) das System ausgelesen werden:
   - Unten findet man unter ``Computing`` die Checkbox für ``CUDA``.
@@ -67,7 +61,7 @@ Diese Leistungsklasse richtet sich vor allem an fortgeschrittene Nutzer, die das
    
    ![Beispielhafte Darstellung](/docs/rtx4090.png)
 
-3. Danach muss das passende [Llama C++ - Release](https://github.com/ggml-org/llama.cpp/releases/) heruntergeladen werden. Die Software sollte passenden zum PC gewählt werden:
+3. Danach muss das passende [Llama C++ - Release](https://github.com/ggml-org/llama.cpp/releases/) heruntergeladen werden. Die verschiedenen Bezeichnungen der Pakete bedeuten:
   - ``Windows x64 (CPU)``, wenn der PC über **KEINE** eigene Grafikkarte verfügt (GPU-Z zeigt dann Intel als Grafikkarte an)
   - ``Windows x64 (CUDA 12) - CUDA 12.4 DLLs``, wenn der PC über eine **NVIDIA** Grafikkarte verfügt (GPU-Z zeigt dann bei CUDA einen Haken)
   - ``Achtung``: Beide Pakete müssen heruntergeladen werden und dann im gleichen Ordner entpackt werden 
@@ -79,8 +73,8 @@ Diese Leistungsklasse richtet sich vor allem an fortgeschrittene Nutzer, die das
 
 ### Kleine Modellkunde
 Nun muss ein passendes Modell im ``.GGUF-FORMAT`` ausgewählt und heruntergeladen werden. Dies sollte nur über die beiden vertrauenswürdigen Quellen [Hugging Face](https://huggingface.co/) oder [ModelScope](https://www.modelscope.ai) erfolgen.
-Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es folgende Aspekte zu beachten:
-**Trainingsparameter**:
+Die Auswahl des Modells ist gerade am Anfang nicht immer einfach. Hier gibt es folgende Aspekte zu beachten:  
+**Trainingsparameter**  
 Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Billion) angegeben.
 - ``0.5B-6B-Modelle`` sind für spezialisierte Einsatzwecke trainiert. Auch wenn sie in anderen Bereichen nutzlos erscheinen, liegt hier die Zukunft bei der Pruduktentwicklung!
 - ``7B-10B-Modelle`` decken bereits breitere Einsatzbereiche ab und liefern sehr gute Ausgaben. Teilweise sind diese bei komplexen Problemen eher überfordert.
@@ -91,13 +85,13 @@ Die Anzahl der Trainings-Parameter werden in der Regel in Milliarden (engl. Bill
 - Seit Q3 2025 werden auch ``MoE-Modelle`` (Mixture of Experts) trainiert. Diese haben z.B. 80B Traningsparameter, nutzen aber nur aktiv 3B Parameter bei der Anfrage (z.B: Qwen3-Next-80B-A3B).
 - Die Bewertung dieser Modelle ist nicht immer ganz einfach. **sehr grobe Rule-Of-Thumb**: Trainingsparameter/10 * aktive Parameter = "effektive" Parameter (z.B. 80/10 * 3 = 24B)
         
-**Quantifizierung**
+**Quantifizierung**  
 Modelle müssen insbesondere für den lokalen Einsatz "komprimiert" werden. Normalerweise laufen Modelle mit 32-Bit-Gleitkomma - diese Präzision kostet viel Speicher und Strom.
 Durch geschicktes "quantifizieren" verlieren einige Modelle nur wenig Präzision (1%-3%), wenn sie auf 8-Bit-Ganzzahl heruntergerechnet werden.
 Bei einer 4-Bit-Quantisierung verlieren einige Modelle mehr Präzision (5%-8%). Dies ist aber bei größeren Modellen durchaus noch akzeptabel.
 **Rule-Of-Thumb**: ``8Q_0`` > ``Q4_K_M`` bei gleicher Parametergröße (Andere Quantifizierungen sollten als Anfänger eher gemieden werden, [Benchmark des Präzisionsverlusts](https://gist.github.com/Artefact2/b5f810600771265fc1e39442288e8ec9)
         
-**Modelltyp**
+**Modelltyp**  
 Nicht jedes Modell eignet sich für alle Aufgabenbereiche. Es haben sich ein paar grobe Aufgabenbereiche mit folgenden Beschreibungen durchgesetzt:
 - ``BASE``-Modelle: Diese Modelle sind zum finetunen und für Anfänger unbrauchbar.
 - ``INSTRUCT`` oder ``CHAT``-Modelle: Klassisches Chat-Modell, welches trainiert wurde Dialoge mit den Nutzer zu führen.
@@ -110,7 +104,7 @@ Nicht jedes Modell eignet sich für alle Aufgabenbereiche. Es haben sich ein paa
 - ``DIFFUSION``-Modelle: Wandeln Texte oder Bilder in Bilder oder Videos um. Diese können nicht mit ``LLAMA C++`` angewandt werden. Dafür sollte [Comfy UI](https://github.com/Comfy-Org/ComfyUI) genutzt werden.
   Das Modell ``Qwen3-VL-235B-A22B-Chat-Thinking`` ist also ein Modell, welches Informationen aus Bildern verarbeiten kann und dabei noch über die verschiedenen Teilprobleme der Anfrage "nachdenkt" bevor es antwortet.
 
-**Kontextgröße**
+**Kontextgröße**  
 Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichzeitig in einer Konversation im Gedächtnis halten kann. Wie Modell mit der Fülle an Eingabe-Informationen umgehen, hängt in hohem Maße von der Einbettung des Modells abhängig - hier beginnt dann in der Regel die Produktentwicklung. Das Problem ist tatsächlich auf der Modellebene diametral und geradezu "menschlich":
 - Je mehr Kontext mit dem Prompt geliefert werden kann, desto präzieser kann der Befehl verstanden und ausgeführt werden.
 - Je größer der Kontext wird, desto eher werden Informationen übersehen oder ignoriert. Das Modell wird also "kognitiv" überfordert.
@@ -119,7 +113,7 @@ Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichz
 - In der Praxis können aber auch Modelle mit 32k Tokens einen vernünftigen Output liefern.
 - Achtung: ``LLAMA C++`` reduziert automatisch die Kontextgröße, wenn ein zu großes Modell ausgewählt wird. In diesem Falle können beschnittene Kontextgrößen von 4000 Tokens entstehen - das Modell wirkt dann dümmer als es tatsächlich ist. Wie man diesem Problem manuell entgegensteuern kann wird in der optionalen ``config.ini`` erläutert.
         
-**Modellgröße in GIGABYTE**
+**Modellgröße in GIGABYTE**  
 - Die Größe des Modells wird durch alle vorgenannten Parameter bestimmt. **Rule-Of-Thumb**: ``bigger`` = ``better``
 - Die **maximale** Größe und die Geschwindigkeit wird durch das vorhandene System limitiert.
 - Generell gilt vereinfacht folgende Rechnung: ``Größe des Grafikkartenspeichers (VRAM)`` + ``Größe des Systemspeichers (RAM)`` - ``5 GB`` = ``Maximale Größe des Modells in GB``
@@ -136,10 +130,10 @@ Die Kontextgröße bestimmt, wie viele Informationen (Tokens) ein Modell gleichz
 [Zurück nach oben](#übersicht)
         
 ### Modellempfehlung für den Einstieg
-Gute Modelle mit zunehmender Größe und Qualität sind (Stand März 2026) ``AUF GENAUE BEZEICHNUNG ACHTEN!``:
-Diese Modelle sind natürlich nicht direkt mit den State-Of-The-Art-Modellen vergleichbar (https://arena.ai/de/leaderboard/)
-Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller verlinken. Darunter befinden sich die passenden Links zu den quantifizierten Modellen im ``.GGUF``-Format. Erfahrene Anbieter von quantifizierten Modellen sind [Bartowski (Arcee AI)](https://huggingface.co/bartowski), [Unsloth AI](https://huggingface.co/unsloth) und [Team MRadermacher](https://huggingface.co/mradermacher).
-Aktuelle Allrounder mit einer sehr guten Effizienz sind die Qwen3.5-Modelle - richtig eingebettet, schlagen diese Modelle deutlich größere Modelle!
+Gute Modelle mit zunehmender Größe und Qualität sind (Stand März 2026) ``AUF GENAUE BEZEICHNUNG ACHTEN!``:  
+Diese Modelle sind natürlich nicht direkt mit den State-Of-The-Art-Modellen vergleichbar (https://arena.ai/de/leaderboard/)  
+Im Folgendem werde ich zuerst auf die offiziellen Modellseiten der Ersteller verlinken. Darunter befinden sich die passenden Links zu den quantifizierten Modellen im ``.GGUF``-Format.   Erfahrene Anbieter von quantifizierten Modellen sind [Bartowski (Arcee AI)](https://huggingface.co/bartowski), [Unsloth AI](https://huggingface.co/unsloth) und [Team MRadermacher](https://huggingface.co/mradermacher).  
+Aktuelle Allrounder mit einer sehr guten Effizienz sind die Qwen3.5-Modelle - richtig eingebettet, schlagen diese Modelle deutlich größere Modelle!  
 - [Modellseite - Qwen3.5 **0.8B**](https://huggingface.co/Qwen/Qwen3.5-0.8B)
   - [Qwen3.5-0.8B-Q8_0.gguf](https://huggingface.co/bartowski/Qwen_Qwen3.5-0.8B-GGUF/resolve/main/Qwen_Qwen3.5-0.8B-Q8_0.gguf) - ``0.8 GB`` mind. 4GB RAM (Für Uralt-PCs, definitiv nur Proof-Of-Concept)  
 - [Modellseite - Qwen3.5 **2B**](https://huggingface.co/Qwen/Qwen3.5-2B)
